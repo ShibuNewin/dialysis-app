@@ -5,7 +5,7 @@ import UserDashboard from './UserDashboard';
 import AdminDashboard from './AdminDashboard';
 import BookingPage from './BookingPage';
 
-// Protected Route Component
+// Fixed: Added back the type definition for children
 const ProtectedRoute = ({ children }: { children: any }) => {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" />;
