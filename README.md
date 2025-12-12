@@ -17,4 +17,7 @@
 
 ## 🛠️ Tech Stack
 * React, Node.js, Express, PostgreSQL.
--Shibunewin.
+
+## 📐 Architecture
+![Uploading sa_dialysis.png…]()
+
