@@ -19,5 +19,6 @@
 * React, Node.js, Express, PostgreSQL.
 
 ## 📐 Architecture
+![Alt Text](frontend/src/assets/sa_dialysis.png)
 
 
