@@ -1,5 +1,10 @@
 # 🏥 CareConnect: Dialysis Booking System
 
+## 🔓 Demo credentials
+* Explore the App Feel free to log in and explore the dashboard using these demo credentials:
+**Email:** test@test.com
+**Password:** test
+
 ## 🚀 Features
 * **Concurrency Handling:** Uses Postgres Row Locking to prevent double-booking.
 * **Role-Based Access:** Patient & Admin Dashboards.
