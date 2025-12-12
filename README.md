@@ -19,5 +19,5 @@
 * React, Node.js, Express, PostgreSQL.
 
 ## 📐 Architecture
-![Uploading sa_dialysis.png…]()
+
 
