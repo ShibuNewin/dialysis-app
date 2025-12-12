@@ -9,26 +9,15 @@ export default function Login() {
   const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', password: '', patientId: '', roomNumber: '' });
+  
+  // 1. New Loading State
   const [isLoading, setIsLoading] = useState(false);
-
-  // --- NEW: DEMO LOGIN FUNCTION ---
-  const handleDemoLogin = () => {
-    // 1. Switch to Login mode automatically
-    setIsRegister(false);
-    
-    // 2. Fill the form with your Demo Credentials
-    // TODO: CHANGE THESE TO A REAL USER FROM YOUR DATABASE
-    setFormData({
-      ...formData,
-      email: 'admin@hospital.com', 
-      password: 'admin123'         
-    });
-  };
-  // --------------------------------
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const endpoint = isRegister ? '/register' : '/login';
+    
+    // 2. Start Loading (Shows spinner)
     setIsLoading(true);
 
     try {
@@ -39,6 +28,7 @@ export default function Login() {
     } catch (err) { 
       alert('Authentication Failed'); 
     } finally {
+      // 3. Stop Loading (Hides spinner whether success or fail)
       setIsLoading(false);
     }
   };
@@ -57,49 +47,16 @@ export default function Login() {
             </>
           )}
           
-          <input 
-            className="custom-input" 
-            type="email" 
-            placeholder="Username or Email" 
-            value={formData.email} // Added value binding so the Demo button works
-            onChange={e => setFormData({...formData, email: e.target.value})} 
-            required 
-          />
-          <input 
-            className="custom-input" 
-            type="password" 
-            placeholder="Password" 
-            value={formData.password} // Added value binding so the Demo button works
-            onChange={e => setFormData({...formData, password: e.target.value})} 
-            required 
-          />
+          <input className="custom-input" type="email" placeholder="Username or Email" onChange={e => setFormData({...formData, email: e.target.value})} required />
+          <input className="custom-input" type="password" placeholder="Password" onChange={e => setFormData({...formData, password: e.target.value})} required />
           
+          {/* 4. Button is disabled while loading */}
           <button type="submit" className="btn-gradient" disabled={isLoading}>
             {isLoading ? 'CONNECTING...' : (isRegister ? 'SIGN UP' : 'LOG IN')}
           </button>
-
-          {/* --- NEW: DEMO BUTTON --- */}
-          {!isRegister && !isLoading && (
-            <button 
-              type="button" 
-              onClick={handleDemoLogin}
-              style={{
-                marginTop: '15px',
-                background: 'transparent',
-                border: '2px dashed #2c5364',
-                color: '#2c5364',
-                padding: '10px',
-                borderRadius: '50px',
-                width: '100%',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              🚀 USE DEMO CREDENTIALS
-            </button>
-          )}
         </form>
 
+        {/* 5. The Spinner and Message */}
         {isLoading && (
             <div className="loading-container">
                 <div className="spinner"></div>
@@ -112,6 +69,7 @@ export default function Login() {
 
         <p className="link-text">
           {isRegister ? 'Already a member?' : 'Not a member?'} 
+          {/* Prevent switching modes while loading */}
           <span onClick={() => !isLoading && setIsRegister(!isRegister)} style={{ cursor: isLoading ? 'default' : 'pointer' }}>
             {isRegister ? 'Login now' : 'Sign up now'}
           </span>
